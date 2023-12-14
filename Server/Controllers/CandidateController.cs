@@ -1,10 +1,11 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Matching;
 using Newtonsoft.Json;
 using Server.Entities.DTO;
 using Server.Entities.Models;
 using Server.Service;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,42 +26,14 @@ namespace Server.Controllers
         }
         // GET: api/<CandidateController>
         [HttpGet]
-  
-
-
-        public async Task<Candidate> Get()
+        public async Task<List<Candidate>> Get()
         {
             //IEnumerable<Candidate> candidate = await _candidateService.GetCandidate();
             //IEnumerable<CandidateDTO> candidateDTOs = _mapper.Map<IEnumerable<Candidate>, IEnumerable<CandidateDTO>>(candidate);
             //return List<CandidateDTO>;
 
             var candidate = await _candidateService.GetCandidate();
-            return candidate;
-        }
+            List<Candidate> candidates = candidate.Candidates;
 
-        // GET api/<CandidateController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return candidates;
         }
-
-        // POST api/<CandidateController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<CandidateController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CandidateController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
-}
