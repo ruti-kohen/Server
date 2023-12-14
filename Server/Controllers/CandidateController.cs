@@ -36,4 +36,4 @@ namespace Server.Controllers
             List<Candidate> candidates = candidate.Candidates;
 
             return candidates;
-        }
+        }}}
