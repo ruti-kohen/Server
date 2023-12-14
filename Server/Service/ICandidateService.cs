@@ -1,6 +1,7 @@
-﻿using Server.Entities.Models;
+using Server.Entities.Models;
 namespace Server.Service;
 public interface ICandidateService
 {
-    Task<Candidate> GetCandidate();
+    //Task<List<Candidate>> GetCandidate();
+    Task<MyApiResponse> GetCandidate();
 }
