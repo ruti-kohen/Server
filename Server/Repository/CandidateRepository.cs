@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing.Matching;
+using Microsoft.AspNetCore.Routing.Matching;
 using Newtonsoft.Json;
 using Server.Entities.Models;
 using System;
@@ -9,29 +9,12 @@ namespace Server.Repository
 {
     public class CandidateRepository : ICandidateRepository
     {
-        private static List<Candidate> CandidateList = new List<Candidate>();
-        string path = "M:\\פרקטיקום\\Server\\Server\\data.txt.txt";
+       // private static List<Candidate> CandidateList = new List<Candidate>();
+       //נסיון לקבלת נתונים מקובץ 
+        //string path = "M:\\פרקטיקום\\Server\\Server\\data.txt.txt";
         public async Task<string> GetCandidate()
         {
 
-            //    if (CandidateList.Count == 0)
-            //    {
-            //        CandidateList.Add(new Candidate
-            //        {
-            //            Id = 1,
-            //            Name = "Wolf",
-            //            StartYear = new DateTime(2022 - 20 - 01),
-            //            DateOfUpdatingTheCandidateInformation = new DateTime(2004, 5, 4),
-            //            technologicalLanguages =
-            //        });
-
-            //     public int Id { get; set; }
-            //public string Name { get; set; }
-            //public DateTime? StartYear { get; set; }
-            //public DateTime DateOfUpdatingTheCandidateInformation { get; set; }
-            //public int TechnologicalLanguages { get; set; }
-            //public virtual ICollection<TechnologicalLanguages> technologicalLanguages { get; set; } = new List<TechnologicalLanguages>();
-        
             {
                 {
                     try
@@ -39,10 +22,10 @@ namespace Server.Repository
                         var client = new HttpClient();
                         var response = await client.GetAsync("https://raw.githubusercontent.com/ozsoftware/canidates/main/db.json");
                         var conect = await response.Content.ReadAsStringAsync();
-                     
+                 
                         // List<Candidate>con = JsonConvert.DeserializeObject<List<Candidate>>(conect);
-                            return conect;
-                    
+                        return conect;
+
                     }
                     catch (Exception exception)
                     {
@@ -52,6 +35,21 @@ namespace Server.Repository
                     }
                 }
             }
+
+            // בצורה ידינית נסיון לקבלת הנתונים 
+
+            //    if (CandidateList.Count == 0)
+            //    {
+            //        CandidateList.Add(new Candidate
+            //        {
+            //            Id = 1,
+            //            Name = "Wolf",
+            //            StartYear = new DateTime(2022 - 20 - 01),
+            //            DateOfUpdatingTheCandidateInformation = new DateTime(2004, 5, 4),
+            //            technologicalLanguages = new List<(1,2,3)>
+            //        });
+
+            //
 
         }
     }
