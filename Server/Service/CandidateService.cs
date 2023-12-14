@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Server.Entities.Models;
 using Server.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http.Json;
 using System.Security.Principal;
 
 namespace Server.Service
@@ -14,24 +15,17 @@ namespace Server.Service
         {
             _candidateRepository = candidateRepository;
         }
-        
-        public async Task<Candidate>GetCandidate()
+        // public async Task<List<Candidate>> GetCandidate()
+        public async Task<MyApiResponse> GetCandidate()
         {
             string response = await _candidateRepository.GetCandidate();
-            // var res = JsonConvert.DeserializeObject<TechnologicalLanguages>(response);
-
-       Candidate candidate = JsonConvert.DeserializeObject<Candidate> (response);
-
-            return candidate;
+            var result = JsonConvert.DeserializeObject<MyApiResponse>(response);
+            return result;
+            var candidate = System.Text.Json.JsonSerializer.Deserialize<List<Candidate>>(response);
+            //var candidate = response;//.Split(',');
+            return null;
 
         }
-        //public async Task<List<User>> GetUsers()
-        //{
-        //    string response = await _usersRepository.GetUsers();
-        //    List<User> users = JsonConvert.DeserializeObject<List<User>>(response);
-        //    return users;
 
-
-        //}
     }
 }
